@@ -1,0 +1,79 @@
+{% extends "layout.html" %} {% block register %}
+<div class="margin-top-n-bottom margin-lr">
+  <div class="margin-top margin-lr">
+    <p class="cool-description alt-rel-pos stay-hidden">
+      Gup is your passport to
+      <em class="bold anim-text-alt-color">authentic experiences!</em
+      >&nbsp;The last thing we need in this world is more
+      <em class="bold anim-text-alt-color">platforms</em> that thrives
+      off our emotional
+      <em class="bold anim-text-alt-color">suffering</em>.
+    </p>
+      <article class="round center almost-top top-page">
+        <div class="content-section fit-page">
+          <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <p class="text-muted text-title-2 center bottom">Ready to live in the moment?</p>
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">
+                <em class="bold anim-text col-1">Sign Up</em>
+              </legend>
+              <div class="form-group">
+                {{ form.username.label(class="form-control-label") }} {% if
+                form.username.errors %} {{ form.username(class="form-control
+                form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.username.errors %}
+                  <span>{{ error }}</span>
+                  {% if form.errors %}
+                  <div class="alert alert-danger">
+                      <ul>
+                      {% for field, errors in form.errors.items() %}
+                          <li>{{ field }}: {{ errors[0] }}</li>
+                      {% endfor %}
+                      </ul>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.username(class="form-control form-control-lg is_round") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.email.label(class="form-control-label") }} {% if
+                form.email.errors %} {{ form.email(class="form-control form-control-lg
+                is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.email.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.email(class="form-control form-control-lg is_round") }} 
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.password.label(class="form-control-label") }} {% if
+                form.password.errors %} {{ form.password(class="form-control
+                form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.password(class="form-control form-control-lg is_round") }}
+                {% endif %}
+              </div>
+            </fieldset>
+            <div class="form-group">
+              {{ form.submit(class="btn btn-outline-info") }}
+              <small class="text-muted ml-2 center-align bottom non-flex set_link_color">
+                Already Have An Account?
+                <a class="ml-2" href="{{ url_for('users.login') }}">Login</a>
+              </small>
+            </div>
+          </form>
+        </div>
+      </article>
+    </div>
+  </div>
+  {% endblock register %}

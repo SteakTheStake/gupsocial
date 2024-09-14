@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto|Work+Sans:400,600"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='img/favicon.ico') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='img/android-chrome-512x512.png') }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ url_for('static', filename='img/apple-touch-icon.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ url_for('static', filename='img/favicon-32x32.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for('static', filename='img/favicon-16x16.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='img/site.webmanifest') }}"
+    />
+    <link
+      href="{{ url_for('static', filename='style/main.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@3.6.13/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css"
+      integrity="sha256-Is0XNfNX8KF/70J2nv8Qe6BWyiXrtFxKfJBHoDgNAEM="
+      crossorigin="anonymous"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.6.13/dist/cdn/beer.min.js"
+    ></script>
+    <script
+      type="module"
+      href="{{ url_for('static', filename='script/voice-memo.js') }}"
+    ></script>
+
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "o0k1xtq4ll");
+    </script>
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"
+    ></script>
+    {% if title %}
+    <title>Gup - {{ title }}</title>
+    {% else %}
+    <title>Gup</title>
+    {% endif %}
+  </head>
+  <body class="light">
+    <nav class="left l static-pos">
+      <header>
+        <nav>
+          <a href="{{ url_for('main.home') }}">
+            <img
+              src="https://raw.githubusercontent.com/SteakTheStake/gup/main/static/img/apple-touch-icon.png"
+              class="circle"
+            />
+          </a>
+        </nav>
+      </header>
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('main.map') }}" class="active">
+        <i class="set_link_color">location_on</i>
+      </a>
+      <a href="{{ url_for('posts.new_post') }}">
+        <i class="set_link_color">add_box</i>
+      </a>
+      <a href="{{ url_for('main.account') }}">
+        <i class="set_link_color">account_circle</i>
+      </a>
+      {% else %}
+      <a href="{{ url_for('users.login') }}">
+        <i class="set_link_color">login</i>
+        <div class="set_link_color">Login</div>
+      </a>
+      <a href="{{ url_for('users.register') }}">
+        <i class="set_link_color">publish</i>
+        <div class="set_link_color">Join</div>
+      </a>
+      {% endif %}
+    </nav>
+    <nav class="left m static-pos">
+      <header>
+        <nav>
+          <a href="{{ url_for('main.home') }}">
+            <img
+              src="https://raw.githubusercontent.com/SteakTheStake/gup/main/static/img/apple-touch-icon.png"
+              class="circle"
+            />
+          </a>
+        </nav>
+      </header>
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('main.map') }}" class="active">
+        <i class="set_link_color">location_on</i>
+      </a>
+      <a href="{{ url_for('posts.new_post') }}">
+        <i class="set_link_color">add_box</i>
+      </a>
+      <a href="{{ url_for('main.account') }}">
+        <i class="set_link_color">account_circle</i>
+      </a>
+      {% else %}
+      <a href="{{ url_for('users.login') }}">
+        <i class="set_link_color">login</i>
+        <div class="set_link_color">Login</div>
+      </a>
+      <a href="{{ url_for('users.register') }}">
+        <i class="set_link_color">publish</i>
+        <div class="set_link_color">Join</div>
+      </a>
+      {% endif %}
+    </nav>
+    <nav class="bottom s static-pos">
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('main.home') }}">
+        <img
+          src="https://raw.githubusercontent.com/SteakTheStake/gup/main/static/img/apple-touch-icon.png"
+          class="circle"
+        />
+      </a>
+      <a href="{{ url_for('main.map') }}" class="active">
+        <i class="set_link_color" class="extra">location_on</i>
+      </a>
+      <a href="{{ url_for('posts.new_post') }}">
+        <i class="set_link_color" class="extra">add_box</i>
+      </a>
+      <a href="{{ url_for('main.account') }}">
+        <i class="set_link_color" class="extra">account_circle</i>
+      </a>
+      {% else %}
+      <a href="{{ url_for('main.home') }}">
+        <img
+          src="https://raw.githubusercontent.com/SteakTheStake/gup/main/static/img/apple-touch-icon.png"
+          class="circle"
+        />
+      </a>
+      <a href="{{ url_for('users.login') }}">
+          <i class="circle set_link_color">login</i>
+      </a>
+      <a href="{{ url_for('users.register') }}">
+          <i class="circle set_link_color">publish</i>
+      </a>
+      {% endif %}
+    </nav>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div class="on_top alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
+      </div>
+      {% if current_user.is_anonymous %}
+      {% block login %}{% endblock %}
+      {% block register %}{% endblock %}
+      {% block content_2 %}{% endblock %}
+      {% else %}
+      {% block feed %}{% endblock %}
+      {% block content %}{% endblock %}
+      {% endif %}
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"
+      integrity="sha256-6sZs7OGP0Uzcl7UDsLaNsy1K0KTZx1+6yEVrRJMn2IM="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
