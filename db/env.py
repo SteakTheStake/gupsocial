@@ -1,3 +1,20 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# getting the name of the directory
+# where the this file is present.
+current = os.path.dirname(os.path.realpath(__file__))
+
+# Getting the parent directory name
+# where the current directory is present.
+parent = os.path.dirname(current)
+
+# adding the parent directory to
+# the sys.path.
+sys.path.append(parent)
+
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -6,7 +23,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from flask import Flask
-from gup import create_app, db
+from wsgi import create_app
 from gup.config import Config
 
 # Create the Flask app
@@ -25,7 +42,6 @@ config.set_main_option("sqlalchemy.url", app.config['SQLALCHEMY_DATABASE_URI'])
 
 # Add your model's MetaData object here
 # for 'autogenerate' support
-target_metadata = db.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -37,7 +53,6 @@ def run_migrations_offline():
   url = config.get_main_option("sqlalchemy.url")
   context.configure(
       url=url,
-      target_metadata=target_metadata,
       literal_binds=True,
       dialect_opts={"paramstyle": "named"},
   )
@@ -63,7 +78,6 @@ def run_migrations_online():
   with connectable.connect() as connection:
       context.configure(
           connection=connection,
-          target_metadata=target_metadata,
           process_revision_directives=process_revision_directives,
       )
 

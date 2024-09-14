@@ -8,7 +8,7 @@ from gup.config import Config
 app = create_app(Config)
 
 # Ensure the SQLAlchemy URI is set
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/gup.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gup.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy and Migrate with the app

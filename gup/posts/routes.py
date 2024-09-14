@@ -12,6 +12,7 @@ posts = Blueprint('posts', __name__)
 @login_required
 def new_post():
     form = PostForm()
+    image_file = url_for('static', filename='user_img/<string:username>' + image_file)
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
         db.session.add(post)
@@ -19,7 +20,7 @@ def new_post():
         flash('Your post has been created!', 'success')
         return redirect(url_for('main.home'))
     return render_template('create_post.html', title='New Post',
-                           form=form, legend='New Post')
+                           image_file=image_file, form=form, legend='New Post')
 
 
 @posts.route("/post/<int:post_id>")

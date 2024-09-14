@@ -32,12 +32,9 @@
       </div>
       {% endif %}
     </div>
-    {% if post.content.lower().endswith(('.png', '.jpg', '.jpeg')) %}
-    <img class="article-image" src="{{ post.content }}" alt="Article image">
-    {% else %}
-    <p class="article-content">{{ post.content }}</p>
-    {% endif %}
-    <h2 class="article-title">{{ post.title }}</h2>
+    <h4 class="article-title">{{ post.title }}</h4>
+    <p class="article-content">{{ post.description }}</p>
+    <div class="container article-image">{{ post.author.image_file }}</div>
   </div>
 </article>
 <!-- Modal -->
