@@ -2,14 +2,13 @@ from flask import url_for, request
 from werkzeug.utils import secure_filename
 import os
 from flask import (render_template, url_for, flash,
-                   redirect, request, abort, Blueprint)
+                   redirect, request, abort, Blueprint, current_app)
 from flask_login import current_user, login_required
 from gup import db
 from gup.models import Post
 from gup.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
-
 
 @posts.route("/post/new", methods=['GET', 'POST'])
 @login_required
@@ -26,7 +25,7 @@ def new_post():
       else:
           image_file = None
 
-      post = Post(title=form.title.data, content=image_file, description=form.description.data, author=current_user)
+      post = Post(title=form.title.data, content=image_file, description=form.description, author=current_user)
       db.session.add(post)
       db.session.commit()
       flash('Your post has been created!', 'success')

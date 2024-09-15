@@ -54,4 +54,16 @@
             </div>
         </form>
     </div>
+
+<script>
+    document.getElementById('content').onchange = function() {
+        var file = this.files[0];
+        var maxSize = 16 * 1024 * 1024; // 16 MB
+        if (file.size > maxSize) {
+            alert('File is too large. Maximum size is 16 MB.');
+            this.value = '';
+        }
+    };
+</script>
+
 {% endblock content %}
