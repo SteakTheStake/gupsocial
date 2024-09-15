@@ -21,13 +21,15 @@ def new_post():
           os.makedirs(user_dir, exist_ok=True)
           file_path = os.path.join(user_dir, filename)
           form.content.data.save(file_path)
-          image_file = url_for('static', filename=f'user_img/{current_user.username}/{filename}')
+          image_file = url_for('static', filename=os.path.join('user_img', current_user.username, filename))
       else:
           image_file = None
 
-      post = Post(title=form.title.data, content=image_file, description=form.description, author=current_user)
+      post = Post(title=form.title.data, content=image_file, description=form.description.data, author=current_user)
       db.session.add(post)
       db.session.commit()
+      new_post = Post.query.filter_by(title=form.title.data).first()
+      print(f"Debug - Stored image URL: {new_post.content}")
       flash('Your post has been created!', 'success')
       return redirect(url_for('main.home'))
   return render_template('create_post.html', title='New Post', form=form, legend='New Post')

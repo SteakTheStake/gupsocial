@@ -13,10 +13,20 @@ html, body {margin: 0; height: 100%; overflow-x: hidden}
 }
 
 .article-image {
-    min-width: 75%;
-    min-height: auto;
-    padding: 1rem;
-    background-color: rgb(0 0 0 0.15);
+    position: relative;
+    top: -4rem;
+    max-width: 100%;
+    width: 32rem;
+    height: auto;
+    margin: 1.5rem;
+    background-color: rgb(0 0 0 0.2);
+    
+}
+
+.un-squish {
+    
+    
+    
 }
 
 /*

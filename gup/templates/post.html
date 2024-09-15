@@ -32,9 +32,11 @@
       </div>
       {% endif %}
     </div>
-    <h4 class="article-title">{{ post.title }}</h4>
-    <p class="article-content">{{ post.description }}</p>
-    <div class="container article-image">{{ post.author.image_file }}</div>
+    <div class="un-squish">
+        <h4 class="article-title">{{ post.title }}</h4>
+        <div class="container"><img src="{{ post.content }}" alt="{{ post.title }}" class="article-image"></div>
+        <p class="article-content">{{ post.description }}</p>
+    </div>
   </div>
 </article>
 <!-- Modal -->
