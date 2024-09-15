@@ -5,7 +5,6 @@ from gup.models import User, Post
 from gup.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm)
 from gup.users.utils import save_picture, send_reset_email
-from your_app.users import users
 
 users = Blueprint('users', __name__)
 
