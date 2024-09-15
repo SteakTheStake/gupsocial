@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block feed %} {% for post in posts.items %}
+{% extends "layout.html" %}
+{% block feed %}
+{% for post in posts.items %}
 <article class="media content-section">
   <img
     class="rounded-circle article-img"
@@ -22,12 +24,16 @@
         >{{ post.title }}</a
       >
     </h2>
-    <p class="article-content">{{ post.content }}</p>
+    <p class="article-content">{{ post.description }}</p>
+    {% if post.content %}
+    <img src="{{ url_for('static', filename=post.content) }}" alt="Post Image" class="img-fluid mt-3">
+    {% endif %}
   </div>
 </article>
-{% endfor %} {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
-left_current=1, right_current=2) %} {% if page_num %} {% if posts.page ==
-page_num %}
+{% endfor %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+{% if posts.page == page_num %}
 <a class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}"
   >{{ page_num }}</a
 >
@@ -37,4 +43,9 @@ page_num %}
   href="{{ url_for('main.home', page=page_num) }}"
   >{{ page_num }}</a
 >
-{% endif %} {% else %} ... {% endif %} {% endfor %} {% endblock feed %}
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endblock feed %}
