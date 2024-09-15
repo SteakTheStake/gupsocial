@@ -10,11 +10,12 @@ load_dotenv(dotenv_path)
 class Config:
     APP_HOST = environ.get("APP_HOST")
     APP_NAME = environ.get("APP_NAME")
-    
+
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB limit
+
     MAIL_SERVER = environ.get("MAIL_SERVER")
     MAIL_PORT = environ.get("MAIL_PORT")
     MAIL_USERNAME = environ.get("MAIL_USERNAME")

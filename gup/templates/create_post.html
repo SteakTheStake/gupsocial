@@ -1,32 +1,48 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 <div class="content-section">
   <form method="POST" enctype="multipart/form-data" action="">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">{{ legend }}</legend>
       <div class="form-group">
-        {{ form.title.label(class="form-control-label") }} {% if
-        form.title.errors %} {{ form.title(class="form-control form-control-lg
-        is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.title.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %} {{ form.title(class="form-control form-control-lg") }} {%
-        endif %}
+        {{ form.title.label(class="form-control-label") }}
+        {% if form.title.errors %}
+          {{ form.title(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.title.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.title(class="form-control form-control-lg") }}
+        {% endif %}
       </div>
       <div class="form-group">
-        {{ form.content.label(class="form-control-label") }} {% if
-        form.content.errors %} {{ form.content(class="form-control
-        form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.content.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %} {{ form.content(class="form-control form-control-lg") }} {%
-        endif %}
+	{{ form.content.label(class="form-control-label") }}
+	{% if form.content.errors %}
+	  {{ form.content(class="form-control-file is-invalid", id="content") }}
+	  <div class="invalid-feedback">
+	    {% for error in form.content.errors %}
+		<span>{{ error }}</span>
+	    {% endfor %}
+	  </div>
+	{% else %}
+	  {{ form.content(class="form-control-file", id="content") }}
+	{% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        {% if form.description.errors %}
+          {{ form.description(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.description.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.description(class="form-control form-control-lg") }}
+        {% endif %}
       </div>
     </fieldset>
     <div class="form-group">
@@ -34,4 +50,16 @@
     </div>
   </form>
 </div>
+
+<script>
+    document.getElementById('content').onchange = function() {
+        var file = this.files[0];
+        var maxSize = 16 * 1024 * 1024; // 16 MB
+        if (file.size > maxSize) {
+            alert('File is too large. Maximum size is 16 MB.');
+            this.value = '';
+        }
+    };
+</script>
+
 {% endblock content %}
