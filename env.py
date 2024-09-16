@@ -19,8 +19,6 @@ sys.path.append(parent)
 
 from logging.config import fileConfig
 
-target_metadata = db.Model.metadata
-
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
