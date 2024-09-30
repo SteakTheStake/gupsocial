@@ -1,0 +1,28 @@
+@import "@turbostarter/ui/globals.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fd-background: var(--background);
+  --fd-foreground: var(--foreground);
+  --fd-muted: var(--muted);
+  --fd-muted-foreground: var(--muted-foreground);
+  --fd-popover: var(--popover);
+  --fd-popover-foreground: var(--popover-foreground);
+  --fd-card: var(--card);
+  --fd-card-foreground: var(--card-foreground);
+  --fd-border: var(--border);
+  --fd-primary: var(--primary);
+  --fd-primary-foreground: var(--primary-foreground);
+  --fd-secondary: var(--secondary);
+  --fd-secondary-foreground: var(--secondary-foreground);
+  --fd-accent: var(--accent);
+  --fd-accent-foreground: var(--accent-foreground);
+  --fd-ring: var(--ring);
+}
+
+#nd-tocnav {
+  @apply top-0;
+}

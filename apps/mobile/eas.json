@@ -1,0 +1,76 @@
+{
+  "cli": {
+    "appVersionSource": "remote",
+    "version": ">= 4.1.2"
+  },
+  "build": {
+    "base": {
+      "node": "20.15.0",
+      "pnpm": "9.6.0",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    // Development profile used for local development
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "development",
+        "EXPO_PUBLIC_SITE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "",
+        "EXPO_PUBLIC_AUTH_PASSWORD": "true",
+        "EXPO_PUBLIC_AUTH_MAGIC_LINK": "true"
+      }
+    },
+    // Needed for iOS, as you can't reuse `development` profile there for simulator
+    "development-simulator": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "APP_ENV": "development",
+        "EXPO_PUBLIC_SITE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "",
+        "EXPO_PUBLIC_AUTH_PASSWORD": "true",
+        "EXPO_PUBLIC_AUTH_MAGIC_LINK": "true"
+      }
+    },
+    // Preview profile used for EAS preview builds in test environment
+    "preview": {
+      "extends": "base",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "APP_ENV": "test",
+        "EXPO_PUBLIC_SITE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "",
+        "EXPO_PUBLIC_AUTH_PASSWORD": "true",
+        "EXPO_PUBLIC_AUTH_MAGIC_LINK": "true"
+      }
+    },
+    // Production profile used for EAS production builds to be submitted to the stores
+    "production": {
+      "extends": "base",
+      "autoIncrement": true,
+      "env": {
+        "APP_ENV": "production",
+        "EXPO_PUBLIC_SITE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_URL": "",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "",
+        "EXPO_PUBLIC_AUTH_PASSWORD": "true",
+        "EXPO_PUBLIC_AUTH_MAGIC_LINK": "true"
+      }
+    }
+  },
+  "submit": {}
+}

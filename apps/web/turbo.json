@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "next-env.d.ts"],
+      "env": [
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "LEMON_SQUEEZY_API_KEY",
+        "LEMON_SQUEEZY_SIGNING_SECRET",
+        "LEMON_SQUEEZY_STORE_ID"
+      ]
+    },
+    "dev": {
+      "persistent": true
+    }
+  }
+}

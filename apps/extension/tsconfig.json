@@ -1,0 +1,15 @@
+{
+  "extends": "@turbostarter/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
+    "paths": {
+      "~/*": ["./src/*"],
+      // needed only for content scripts ui
+      "~app/*": ["./src/app/*"]
+    },
+    "baseUrl": "."
+  },
+  "exclude": ["node_modules"],
+  "include": [".plasmo/index.d.ts", "src", "*.ts", "*.js", "postcss.config.cjs"]
+}

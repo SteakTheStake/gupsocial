@@ -1,0 +1,10 @@
+{
+  "extends": "@turbostarter/tsconfig/internal.json",
+  "compilerOptions": {
+    "paths": {
+      "content-collections": ["./.content-collections/generated"]
+    }
+  },
+  "include": ["*.ts", "src"],
+  "exclude": ["node_modules"]
+}
