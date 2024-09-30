@@ -1,0 +1,5 @@
+{
+    "docker.commands.run": "${containerCommand} run --rm -d ${exposedPorts} ${tag}",
+    "docker.enableDockerComposeLanguageService": false,
+    "docker.dockerPath": "/usr/local/bin/docker"
+}

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "i": "^0.3.7",
+    "pnpm": "^9.10.0"
+  }
+}
