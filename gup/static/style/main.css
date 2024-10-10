@@ -5,7 +5,6 @@ html, body {margin: 0; height: 100%; overflow-x: hidden}
 .container {
     position: relative;
     width: 100%;
-    margin-top: 6rem;
     margin-right: auto;
     margin-left: auto;
     padding-left: 0;
