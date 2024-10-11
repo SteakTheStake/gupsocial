@@ -103,7 +103,7 @@
         </nav>
       </header>
       {% if current_user.is_authenticated %}
-      <a href="{{ url_for('main.map') }}" class="active">
+      <a href="{{ url_for('main.map') }}">
         <i class="set_link_color">location_on</i>
       </a>
       <a href="{{ url_for('posts.new_post') }}">
@@ -135,7 +135,7 @@
         </nav>
       </header>
       {% if current_user.is_authenticated %}
-      <a href="{{ url_for('main.map') }}" class="active">
+      <a href="{{ url_for('main.map') }}">
         <i class="set_link_color">location_on</i>
       </a>
       <a href="{{ url_for('posts.new_post') }}">
@@ -163,7 +163,7 @@
           class="circle"
         />
       </a>
-      <a href="{{ url_for('main.map') }}" class="active">
+      <a href="{{ url_for('main.map') }}">
         <i class="set_link_color" class="extra">location_on</i>
       </a>
       <a href="{{ url_for('posts.new_post') }}">
