@@ -22,12 +22,6 @@ html, body {margin: 0; height: 100%; overflow-x: hidden}
     
 }
 
-.un-squish {
-    
-    
-    
-}
-
 /*
 .form-control {
     background-color: #2b2a2d; !important;
@@ -113,7 +107,6 @@ html, body {margin: 0; height: 100%; overflow-x: hidden}
 }
 
 .almost-top {
-    top: -15rem !important;
     overflow-y: scroll;
 }
 
