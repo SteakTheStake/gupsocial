@@ -30,52 +30,24 @@ def new_post():
           db.session.add(post)
           db.session.commit()
           
+          print(f"[POST] New post created by {current_user.username}: {content_file}")
           flash('Your post has been created!', 'success')
           return redirect(url_for('main.home'))
       else:
+          print(f"[POST] Invalid file upload attempt by {current_user.username}")
           flash('Invalid file format. Please upload a .mp4, .mov, .heic, .jpg, or .png file.', 'danger')
   
   return render_template('create_post.html', title='New Post', form=form, legend='New Post')
-
-@posts.route("/post/<int:post_id>")
-def post(post_id):
-  post = Post.query.get_or_404(post_id)
-  return render_template('post.html', post=post)
-
-@posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
-@login_required
-def update_post(post_id):
-  post = Post.query.get_or_404(post_id)
-  if post.author != current_user:
-      abort(403)
-  form = PostForm()
-  if form.validate_on_submit():
-      if form.content.data and allowed_file(form.content.data.filename):
-          filename = secure_filename(form.content.data.filename)
-          user_dir = os.path.join(current_app.root_path, 'static', 'user_content', current_user.username)
-          os.makedirs(user_dir, exist_ok=True)
-          file_path = os.path.join(user_dir, filename)
-          form.content.data.save(file_path)
-          post.content = url_for('static', filename=os.path.join('user_content', current_user.username, filename))
-      
-      post.description = form.description.data
-      db.session.commit()
-      flash('Your post has been updated!', 'success')
-      return redirect(url_for('posts.post', post_id=post.id))
-  elif request.method == 'GET':
-      form.description.data = post.description
-  return render_template('create_post.html', title='Update Post', form=form, legend='Update Post')
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
 def delete_post(post_id):
   post = Post.query.get_or_404(post_id)
   if post.author != current_user:
+      print(f"[SECURITY] Unauthorized delete attempt on post {post_id} by {current_user.username}")
       abort(403)
   db.session.delete(post)
   db.session.commit()
+  print(f"[POST] Post {post_id} deleted by {current_user.username}")
   flash('Your post has been deleted!', 'success')
   return redirect(url_for('main.home'))
-
-# Created/Modified files during execution:
-print("posts/routes.py")

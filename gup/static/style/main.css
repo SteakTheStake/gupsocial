@@ -22,6 +22,11 @@ html, body {margin: 0; height: 100%; overflow-x: hidden}
     
 }
 
+.article-video {
+    max-width: 100%;
+    height: auto;
+  }
+
 /*
 .form-control {
     background-color: #2b2a2d; !important;

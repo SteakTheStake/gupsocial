@@ -17,22 +17,23 @@ mail = Mail()
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(Config)
+  app = Flask(__name__)
+  app.config.from_object(Config)
 
-    db.init_app(app)
-    migrate.init_app(app, db)
-    bcrypt.init_app(app)
-    login_manager.init_app(app)
-    mail.init_app(app)
+  db.init_app(app)
+  migrate.init_app(app, db)
+  bcrypt.init_app(app)
+  login_manager.init_app(app)
+  mail.init_app(app)
 
-    from gup.users.routes import users
-    from gup.posts.routes import posts
-    from gup.main.routes import main
-    from gup.errors.handlers import errors
-    app.register_blueprint(users)
-    app.register_blueprint(posts)
-    app.register_blueprint(main)
-    app.register_blueprint(errors)
+  from gup.users.routes import users
+  from gup.posts.routes import posts
+  from gup.main.routes import main
+  from gup.errors.handlers import errors
+  app.register_blueprint(users)
+  app.register_blueprint(posts)
+  app.register_blueprint(main)
+  app.register_blueprint(errors)
 
-    return app
+  print(f"[SERVER] Application initialized with {config_class.__name__} configuration")
+  return app
